@@ -29,7 +29,6 @@ function Product(props) {
             <div key={index}>
             <Link to={`/product/${item.id}`} exact>
             <div>  Name : {item.name}</div>
-
             </Link>
            <div>Category: {item.category}</div>
             <button onClick={() => removeProduct(item.id)}>Delete</button>
@@ -81,7 +80,7 @@ function Product(props) {
         </Route> */}
       </Route>
       <Route path={`${url}/edit/:id`} exact>
-        <Edit />
+        <Edit {...props} />
       </Route>
     </Router>
   );

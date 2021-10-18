@@ -6,25 +6,19 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import AddProduct from "./Add";
 import { remove } from "../api/productAPI";
 import Edit from "./Edit";
-const Home = () => {
+const Home = (props) => {
   const { url } = useRouteMatch();
   const [products, setProducts] = useState([]);
+  
   useEffect(() => {
     getAll().then((response) => setProducts(response.data));
   }, []);
-  const onHandleAdd = (product) => {
-    setProducts([...products, product]);
-  };
+  
   const onHandleDelete = (id) => {
     const newProducts = products.filter((product) => product.id !== id);
     setProducts(newProducts);
   };
-  const onHandleUpdate = (product) => {
-    const newProducts = products.map((item) =>
-      item.id === product.id ? product : item
-    );
-    setProducts(newProducts);
-  };
+  
   const removeProduct = async (id) => {
     try {
       remove(id);
@@ -62,7 +56,7 @@ const Home = () => {
                         >
                           Delete
                         </button>
-                        <Link to={`${url}/edit/` + item.id} exact>
+                        <Link to={`/product/${item.id}/edit`} exact>
                           <div className="btn btn-primary"> Edit</div>
                         </Link>
                       </div>
@@ -74,15 +68,15 @@ const Home = () => {
           </div>
         </Route>
 
-        <Route path={`${url}/add`}>
+        {/* <Route path={`${url}/add`}>
           <AddProduct onAdd={onHandleAdd} />
         </Route>
         <Route path={`${url}/:id`} exact>
           Detail Product
-        </Route>
-        <Route path={`${url}/:id/edit`}>
+        </Route> */}
+        {/* <Route path={`${url}/:id/edit`}>
           <Edit onUpdate={onHandleUpdate} />
-        </Route>
+        </Route> */}
       </Switch>
     </div>
   );

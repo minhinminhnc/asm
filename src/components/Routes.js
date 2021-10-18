@@ -99,6 +99,10 @@ function Routes(props) {
           <Route path="/signin">
           <SigninA></SigninA>
           </Route>
+          <Route path={`/product/:id/edit`}>
+          <Edit {...props}/>
+         
+        </Route>
           {/* <Route path={`/product/:id/edit`} exact>
             <Edit {...props} />
           </Route> */}

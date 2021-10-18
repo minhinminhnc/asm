@@ -19,35 +19,38 @@ function Edit(props) {
 
   const onSubmit = (data) => {
     const product = {
-      id: id,
+      id: data.id,
       ...data,
     };
     update(product).then((response) => {
-      // console.log("response", response);
       props.onUpdate(response.data);
-      history.push("/products");
+      history.push("/product");
     });
   };
-
+// file này có phải t code đâu b
   return (
     <>
       <div className="c">
         <h2>Cập nhật sản phẩm</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input
+          <a>Tên Sản Phẩm</a>
+          <input className="d"
             type="text"
             defaultValue={product.name}
             {...register("name")}
           />
           <br />
-          <input
+          <a>Giá Sản Phẩm</a>
+          <input className="d"
             type="text"
             defaultValue={product.price}
             {...register("price")}
           />
           <br />
-          <input type="text" defaultValue={product.img} {...register("img")} />
-          <button type="submit">Submit</button>
+          <a> Link Ảnh SP  </a>
+          <input type="text" defaultValue={product.img} {...register("img")} className="d"/>
+          <br />
+          <button type="submit" className="btn btn-primary e">Submit</button>
         </form>
       </div>
     </>

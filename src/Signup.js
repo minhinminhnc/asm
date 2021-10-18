@@ -2,7 +2,9 @@ import { useForm } from "react-hook-form";
 import { signup } from "./api/authAPI";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useHistory } from "react-router";
 const SignupA = () => {
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -13,7 +15,7 @@ const SignupA = () => {
     console.log(data);
     signup(data);
     toast.success("Đăng Ký thành công");
-
+    history.push("/signin");
   };
   return (
     <div className="row mt-5">
@@ -23,12 +25,12 @@ const SignupA = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="email">Email</label>
           <input
-            type="text"
+            type="email"
             className="form-control"
             id="email"
             aria-describedby="helpId"
             placeholder="email"
-            {...register("email")}
+            {...register("username")}
             
           />
 
